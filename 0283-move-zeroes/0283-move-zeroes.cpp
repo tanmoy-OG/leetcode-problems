@@ -2,14 +2,11 @@ class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         vector<int> store;
-        int cnt = 0;
 
-        for (auto it : nums) {
-            if (it == 0)
-                cnt++;
-            else
+        for (auto it : nums)
+            if (it != 0)
                 store.push_back(it);
-        }
+        int cnt = nums.size() - store.size();
         for (int i = 1; i <= cnt; i++)
             store.push_back(0);
 
