@@ -1,12 +1,16 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        vector<int> store(nums.size()+1);
-        for(auto it: nums)
-            store[it] = 1;
-        for(int i = 0; i < store.size(); i++)
-            if(store[i] == 0)
+        for (int i = 0; i <= nums.size(); i++) {
+            int check = 0;
+            for (auto it : nums)
+                if (it == i) {
+                    check++;
+                    break;
+                }
+            if (check == 0)
                 return i;
-        return 0;
+        }
+        return -1;
     }
 };
