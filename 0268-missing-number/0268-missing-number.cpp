@@ -1,16 +1,11 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        for (int i = 0; i <= nums.size(); i++) {
-            int check = 0;
-            for (auto it : nums)
-                if (it == i) {
-                    check++;
-                    break;
-                }
-            if (check == 0)
-                return i;
-        }
-        return -1;
+        int size = nums.size(), idealSum = size * (size + 1) / 2, realSum = 0,
+            missing;
+        for (auto it : nums)
+            realSum += it;
+        missing = idealSum - realSum;
+        return missing;
     }
 };
