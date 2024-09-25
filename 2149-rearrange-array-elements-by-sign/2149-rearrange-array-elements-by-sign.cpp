@@ -17,16 +17,16 @@ public:
             } else if (check == 0 && nums[neg] >= 0)
                 neg++;
         }
-        // while (pos < nums.size())
-        //     if (nums[pos] >= 0) {
-        //         ans.push_back(nums[pos]);
-        //         pos++;
-        //     }
-        // while (neg < nums.size())
-        //     if (nums[neg] >= 0) {
-        //         ans.push_back(nums[neg]);
-        //         neg++;
-        //     }
+        while (pos < nums.size()) {
+            if (nums[pos] >= 0)
+                ans.push_back(nums[pos]);
+            pos++;
+        }
+        while (neg < nums.size()) {
+            if (nums[neg] < 0)
+                ans.push_back(nums[neg]);
+            neg++;
+        }
         return ans;
     }
 };
