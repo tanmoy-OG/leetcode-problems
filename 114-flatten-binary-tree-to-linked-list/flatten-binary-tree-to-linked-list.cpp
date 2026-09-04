@@ -12,14 +12,18 @@
 class Solution {
 public:
     void flatten(TreeNode* root) {
-        queue<TreeNode*> q;
-        fill(root, q);
-        q.push(NULL);
-        while(q.front()) {
-            TreeNode* node = q.front();
-            q.pop();
+        if (!root)
+            return;
+        stack<TreeNode*> st;
+        st.push(root);
+        while(!st.empty()) {
+            TreeNode* node = st.top();
+            st.pop();
+            if(node->right) st.push(node->right);
+            if(node->left) st.push(node->left);
             node->left = NULL;
-            node->right = q.front();
+            if(!st.empty())
+                node->right = st.top();
         }
     }
     void fill(TreeNode* node, queue<TreeNode*>& q) {
