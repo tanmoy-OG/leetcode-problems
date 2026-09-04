@@ -14,13 +14,27 @@ public:
     bool isSymmetric(TreeNode* root) {
         return isSymmetric(root->left, root->right);
     }
-    bool isSymmetric(TreeNode* node1, TreeNode* node2) {
-        if(!node1 && !node2)
-            return true;
-        if(!node1 || !node2)
-            return false;
-        if(node1->val != node2->val)
-            return false;
-        return isSymmetric(node1->left, node2->right) && isSymmetric(node1->right, node2->left);
+    bool isSymmetric(TreeNode* root1, TreeNode* root2) {
+        queue<TreeNode*> q1;
+        queue<TreeNode*> q2;
+        q1.push(root1);
+        q2.push(root2);
+        while(!q1.empty() && !q2.empty()) {
+            TreeNode* node1 = q1.front();
+            TreeNode* node2 = q2.front();
+            q1.pop();
+            q2.pop();
+            if(!node1 && !node2)
+                continue;
+            if(!node1 || !node2)
+                return false;
+            if(node1->val != node2->val)
+                return false;
+            q1.push(node1->left);
+            q1.push(node1->right);
+            q2.push(node2->right);
+            q2.push(node2->left);
+        }
+        return true;
     }
 };
