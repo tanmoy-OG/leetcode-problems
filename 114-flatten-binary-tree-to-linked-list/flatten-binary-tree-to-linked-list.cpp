@@ -26,11 +26,4 @@ public:
                 node->right = st.top();
         }
     }
-    void fill(TreeNode* node, queue<TreeNode*>& q) {
-        if(!node)
-            return;
-        q.push(node);
-        fill(node->left, q);
-        fill(node->right, q);
-    }
 };
