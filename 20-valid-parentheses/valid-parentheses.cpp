@@ -2,25 +2,25 @@ class Solution {
 public:
     bool isValid(string s) {
         stack<char> st;
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] == ')' || s[i] == '}' || s[i] == ']') {
-                if (st.empty())
-                    return false;
-                if (s[i] == st.top())
+
+        for (char cur : s) {
+            if (!st.empty()) {
+                char last = st.top();
+                if (isPair(last, cur)) {
                     st.pop();
-                else
-                    return false;
-            } else {
-                if (s[i] == '(')
-                    st.push(')');
-                else if (s[i] == '{')
-                    st.push('}');
-                else if (s[i] == '[')
-                    st.push(']');
+                    continue;
+                }
             }
+            st.push(cur);
         }
-        if (!st.empty())
-            return false;
-        return true;
+
+        return st.empty();        
     }
-};
+
+private:
+    bool isPair(char last, char cur) {
+        return (last == '(' && cur == ')') ||
+               (last == '{' && cur == '}') ||
+               (last == '[' && cur == ']');
+    }
+};    
